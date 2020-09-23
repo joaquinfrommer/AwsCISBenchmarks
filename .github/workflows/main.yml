@@ -1,0 +1,17 @@
+name: deploy to lambda
+on: [push]
+jobs:
+  deploy_source:
+    name: deploy lambda from source
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v2
+      - name: default deploy
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.ACCESS_KEY_KEY}}
+          aws_region: us-west-1
+          function_name: testAws
+          source: EnsureAllVpcsEnableFlowLogs.py
