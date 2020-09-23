@@ -11,7 +11,7 @@ def create_vpc_flow_logs(ids):
         LogDestinationType='cloud-watch-logs',
         LogDestination='', #TODO: Set up a log destination
         DeliverLogsPermissionArn='') #TODO: Create roll for delivering logs
-    print(success)
+        #works
 
 
 vpc_client = boto3.client('ec2')
