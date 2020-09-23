@@ -14,4 +14,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.ACCESS_KEY_KEY}}
           aws_region: us-west-1
           function_name: testAws
-          source: AwsCISBenchmarks/EnsureAllVpcsEnableFlowLogs.py
+          source: EnsureAllVpcsEnableFlowLogs.py
