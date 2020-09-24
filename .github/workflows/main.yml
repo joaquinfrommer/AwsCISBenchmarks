@@ -14,4 +14,12 @@ jobs:
           aws_secret_access_key: ${{ secrets.ACCESS_KEY_KEY}}
           aws_region: us-west-1
           function_name: testAws
-          source: EnsureAllVpcsEnableFlowLogs.py
+          source: EnsureAllVpcsEnableFlowLogs.py  
+      - name: next deploy
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.ACCESS_KEY_KEY}}
+          aws_region: us-west-1
+          function_name: testAws
+          source: EnsureKeyRotation.py
