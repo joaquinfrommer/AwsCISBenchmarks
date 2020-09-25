@@ -36,7 +36,13 @@ def check_acl_rules(rules, acl_id):
             remove_acl_rule(acl_id, entry['RuleNumber'])
 
 
-ec2_client = boto3.client('ec2')
-acls = ec2_client.describe_network_acls()['NetworkAcls']
-for acl in acls:
-    check_acl_rules(acl['Entries'], acl['NetworkAclId'])
+#Starting sequence
+def start():
+    ec2_client = boto3.client('ec2')
+    acls = ec2_client.describe_network_acls()['NetworkAcls']
+    for acl in acls:
+        check_acl_rules(acl['Entries'], acl['NetworkAclId'])
+
+
+if __name__ == "__main__":
+    start()

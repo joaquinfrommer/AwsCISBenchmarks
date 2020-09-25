@@ -67,7 +67,13 @@ def check_groups(groups):
             print(group['GroupName'])
 
 
-security_groups_description = vpc.describe_security_groups()
-security_groups = security_groups_description['SecurityGroups']
-print("Non-compliant security groups with ports exposed:")
-check_groups(security_groups)
+#Starting sequence
+def start():
+    security_groups_description = vpc.describe_security_groups()
+    security_groups = security_groups_description['SecurityGroups']
+    print("Non-compliant security groups with ports exposed:")
+    check_groups(security_groups)
+
+
+if __name__ == "__main__":
+    start()

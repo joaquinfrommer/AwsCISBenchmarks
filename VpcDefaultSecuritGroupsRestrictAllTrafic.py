@@ -30,6 +30,12 @@ def check_groups(groups):
             check_default_rules(group, security_group)
 
 
-security_groups_description = vpc.describe_security_groups()
-security_groups = security_groups_description['SecurityGroups']
-check_groups(security_groups)
+#Starting sequence
+def start():
+    security_groups_description = vpc.describe_security_groups()
+    security_groups = security_groups_description['SecurityGroups']
+    check_groups(security_groups)
+
+
+if __name__ == "__main__":
+    start()
