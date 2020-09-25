@@ -1,0 +1,32 @@
+name: deploy zip to lambda
+on: [push]
+jobs:
+
+  deploy_zip:
+    name: deploy lambda function
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.13.x]
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v2
+      - name: zip files
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r AwsCISBenchmarks.zip AwsCISBenchmarks
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Build binary
+        run: |
+          cd example && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -a -o main main.go && zip deployment.zip main
+      - name: default deploy
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{secrets.ACCESS_KEY_ID}}
+          aws_secret_access_key: ${{secrets.ACCESS_KEY_KEY }}
+          aws_region: us-west-1
+          function_name: testAwsZip
+          zip_file: AwsCISBenchmarks.zip
