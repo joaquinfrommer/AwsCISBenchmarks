@@ -4,7 +4,7 @@ import boto3
 #Creates a flow log for the vpc
 def create_vpc_flow_logs(ids):
     print("Creating flow logs...")
-    success = vpc_client.create_flow_logs(
+    vpc_client.create_flow_logs(
         ResourceIds=ids, 
         ResourceType='VPC', 
         TrafficType='REJECT', 
