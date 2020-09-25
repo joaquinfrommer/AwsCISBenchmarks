@@ -14,7 +14,7 @@ jobs:
       - name: zip files
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r AwsCISBenchmarks.zip AwsCISBenchmarks
+          args: zip -qq -r AwsCISBenchmarks.zip . -i AwsCISBenchmarks
       - name: Install Go
         uses: actions/setup-go@v2
         with:
