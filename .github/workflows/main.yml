@@ -1,4 +1,4 @@
-name: deploy to lambda
+name: deploy to Lambda
 on: [push]
 jobs:
   deploy_source:
